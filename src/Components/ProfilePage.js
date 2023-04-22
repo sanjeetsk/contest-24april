@@ -6,8 +6,8 @@ const ProfilePage = () => {
     useEffect(() => {
         const id = localStorage.getItem("id");
         fetch(`https://dummyjson.com/users/${id}`)
-        .then((res) => res.json())
-        .then((data) => setUserState(data));
+            .then((res) => res.json())
+            .then((data) => setUserState(data));
     }, []);
 
     const otherUser = () => {
@@ -21,19 +21,22 @@ const ProfilePage = () => {
             <h1>Profile Page</h1>
             {
                 userState ?
-                (
-                    <div>
-                        <img src={userState.image} alt="pic" />
-                        <p>Name: {userState.maidenName}</p>
-                        <p>Email: {userState.email}</p>
-                        <p>Phone: {userState.phone}</p>
-                        <p>Location: {userState.address.city}</p>
-                        <p>University: {userState.university}</p>
-                        <p>Company: {userState.company.name}</p>
-                    </div>
-                ) : (
-                    <p>Loading...</p>
-                )
+                    (
+                        <div className="detail">
+                            <div>
+                                <img src={userState.image} alt="pic" />
+                            </div>
+                            <div className="userDetail">
+                                {
+                                    Object.entries(userState).map(([key, value]) => (
+                                        <p key={key}>{`${key}: ${value}`}</p>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    ) : (
+                        <p>Loading...</p>
+                    )
             }
             <button className="btn" onClick={otherUser}>Other User</button>
         </div>

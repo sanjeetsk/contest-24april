@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import ProfilePage from "./ProfilePage";
+import React, { useState} from "react";
 
 const LoginPage = () => {
     const [usernameState, setUsernameState] = useState("");
